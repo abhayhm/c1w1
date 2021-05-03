@@ -29,20 +29,24 @@
 
 void main() {
 
+	//Array of elements
 	unsigned char buffer[SIZE] = { 34, 201, 190, 154,   8, 194,   2,   6,
 								114, 88,   45,  76, 123,  87,  25,  23,
 								200, 122, 150, 90,   92,  87, 177, 244,
 								201,   6,  12,  60,   8,   2,   5,  67,
                                 7,  87, 250, 230,  99,   3, 100,  90};
 	
+	//Printing analytics of array
 	printf("Analytics of an array of elements:\n");
 	print_statistics( buffer, SIZE );
 	
+	//Printing reorded array
 	printf("Reordered data set from large to small:\n");
 	print_array( buffer, SIZE );
 	
 }
 
+//Prints the statistics of an array
 void print_statistics( unsigned char *buffer, int nmemb )
 {
 	printf("Median : %d\n", (int)find_median( buffer, nmemb ));
@@ -51,6 +55,7 @@ void print_statistics( unsigned char *buffer, int nmemb )
 	printf("Minimum: %d\n", (int)find_minimum( buffer, nmemb ));
 }
 
+//Prints all the elements of array
 void print_array( unsigned char *buffer, int nmemb )
 {
 	for( int element = 0; element < nmemb; ++element )
@@ -64,6 +69,7 @@ void print_array( unsigned char *buffer, int nmemb )
 	}
 }
 
+//Finds the median of elements
 unsigned char find_median( unsigned char *buffer, int nmemb )
 {
 	sort_array( buffer, nmemb );
@@ -78,6 +84,7 @@ unsigned char find_median( unsigned char *buffer, int nmemb )
 	}
 }
 
+//Finds mean of elements
 unsigned int find_mean( unsigned char *buffer, int nmemb )
 {
 	unsigned int mean = 0;
@@ -90,6 +97,7 @@ unsigned int find_mean( unsigned char *buffer, int nmemb )
 	return ( mean / nmemb );
 }
 
+//Finds maximum of elements
 unsigned char find_maximum( unsigned char *buffer, int nmemb )
 {
 	unsigned char maximum = buffer[0];
@@ -105,6 +113,7 @@ unsigned char find_maximum( unsigned char *buffer, int nmemb )
 	return maximum;
 }
 
+//Finds minimum of elements
 unsigned char find_minimum( unsigned char *buffer, int nmemb )
 {
 	unsigned char minimum = buffer[0];
@@ -120,6 +129,7 @@ unsigned char find_minimum( unsigned char *buffer, int nmemb )
 	return minimum;
 }
 
+//Sorts array elements from larger to smaller
 void sort_array( unsigned char *buffer, int nmemb )
 {
 	int sorted = 1;
