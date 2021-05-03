@@ -75,7 +75,7 @@ unsigned char find_median( unsigned char *buffer, int nmemb );
  *
  * @return mean
  */
-unsigned char find_mean( unsigned char *buffer, int nmemb );
+unsigned int find_mean( unsigned char *buffer, int nmemb );
 
 /**
  * @brief Finds maximum of elements
