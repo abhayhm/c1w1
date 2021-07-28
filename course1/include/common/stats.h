@@ -1,10 +1,11 @@
 /******************************************************************************
- * Copyright (C) 2021 by Abhay HM - student (Coursera)
+ * Copyright (C) 2017 by Alex Fosdick - University of Colorado
  *
  * Redistribution, modification or use of this software in source or binary
  * forms is permitted as long as the files maintain this copyright. Users are 
  * permitted to modify this and use it to learn about the field of embedded
- * software. Abhay HM is not liable for any misuse of this material. 
+ * software. Alex Fosdick and the University of Colorado are not liable for any
+ * misuse of this material. 
  *
  *****************************************************************************/
 
@@ -34,7 +35,7 @@
  *
  * @return void
  */
-void print_statistics( unsigned char *buffer, int nmemb );
+void print_statistics( unsigned char *buffer, unsigned int nmemb );
 
 /**
  * @brief Prints all the elements of array
@@ -47,7 +48,7 @@ void print_statistics( unsigned char *buffer, int nmemb );
  *
  * @return void
  */
-void print_array( unsigned char *buffer, int nmemb );
+void print_array( unsigned char *buffer, unsigned int nmemb );
 
 /**
  * @brief Finds the median of elements
@@ -61,7 +62,7 @@ void print_array( unsigned char *buffer, int nmemb );
  *
  * @return median
  */
-unsigned char find_median( unsigned char *buffer, int nmemb );
+unsigned char find_median( unsigned char *buffer, unsigned int nmemb );
 
 /*
  * @brief Finds mean of elements
@@ -75,7 +76,7 @@ unsigned char find_median( unsigned char *buffer, int nmemb );
  *
  * @return mean
  */
-unsigned int find_mean( unsigned char *buffer, int nmemb );
+unsigned int find_mean( unsigned char *buffer, unsigned int nmemb );
 
 /**
  * @brief Finds maximum of elements
@@ -89,7 +90,7 @@ unsigned int find_mean( unsigned char *buffer, int nmemb );
  *
  * @return maximum
  **/
-unsigned char find_maximum( unsigned char *buffer, int nmemb );
+unsigned char find_maximum( unsigned char *buffer, unsigned int nmemb );
 
 /**
  * @brief Finds minimum of elements
@@ -103,7 +104,7 @@ unsigned char find_maximum( unsigned char *buffer, int nmemb );
  *
  * @return minimum
  */
-unsigned char find_minimum( unsigned char *buffer, int nmemb );
+unsigned char find_minimum( unsigned char *buffer, unsigned int nmemb );
 
 /**
  * @brief Sorts array elements from larger to smaller
@@ -118,6 +119,6 @@ unsigned char find_minimum( unsigned char *buffer, int nmemb );
  *
  * @return void
  */
-void sort_array( unsigned char *buffer, int nmemb );
+void sort_array( unsigned char *buffer, unsigned int nmemb );
 
 #endif /* __STATS_H__ */

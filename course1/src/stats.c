@@ -1,10 +1,11 @@
 /******************************************************************************
- * Copyright (C) 2021 by Abhay HM - student (Coursera)
+ * Copyright (C) 2017 by Alex Fosdick - University of Colorado
  *
  * Redistribution, modification or use of this software in source or binary
  * forms is permitted as long as the files maintain this copyright. Users are 
  * permitted to modify this and use it to learn about the field of embedded
- * software. Abhay HM is not liable for any misuse of this material. 
+ * software. Alex Fosdick and the University of Colorado are not liable for any
+ * misuse of this material. 
  *
  *****************************************************************************/
 
@@ -47,7 +48,7 @@ void main() {
 }
 
 //Prints the statistics of an array
-void print_statistics( unsigned char *buffer, int nmemb )
+void print_statistics( unsigned char *buffer, unsigned int nmemb )
 {
 	printf("Median : %d\n", (int)find_median( buffer, nmemb ));
 	printf("Mean   : %d\n", (int)find_mean( buffer, nmemb ));
@@ -56,7 +57,7 @@ void print_statistics( unsigned char *buffer, int nmemb )
 }
 
 //Prints all the elements of array
-void print_array( unsigned char *buffer, int nmemb )
+void print_array( unsigned char *buffer, unsigned int nmemb )
 {
 	for( int element = 0; element < nmemb; ++element )
 	{
@@ -70,7 +71,7 @@ void print_array( unsigned char *buffer, int nmemb )
 }
 
 //Finds the median of elements
-unsigned char find_median( unsigned char *buffer, int nmemb )
+unsigned char find_median( unsigned char *buffer, unsigned int nmemb )
 {
 	sort_array( buffer, nmemb );
 	
@@ -85,7 +86,7 @@ unsigned char find_median( unsigned char *buffer, int nmemb )
 }
 
 //Finds mean of elements
-unsigned int find_mean( unsigned char *buffer, int nmemb )
+unsigned int find_mean( unsigned char *buffer, unsigned int nmemb )
 {
 	unsigned int mean = 0;
 	
@@ -98,7 +99,7 @@ unsigned int find_mean( unsigned char *buffer, int nmemb )
 }
 
 //Finds maximum of elements
-unsigned char find_maximum( unsigned char *buffer, int nmemb )
+unsigned char find_maximum( unsigned char *buffer, unsigned int nmemb )
 {
 	unsigned char maximum = buffer[0];
 	
@@ -114,7 +115,7 @@ unsigned char find_maximum( unsigned char *buffer, int nmemb )
 }
 
 //Finds minimum of elements
-unsigned char find_minimum( unsigned char *buffer, int nmemb )
+unsigned char find_minimum( unsigned char *buffer, unsigned int nmemb )
 {
 	unsigned char minimum = buffer[0];
 	
@@ -130,7 +131,7 @@ unsigned char find_minimum( unsigned char *buffer, int nmemb )
 }
 
 //Sorts array elements from larger to smaller
-void sort_array( unsigned char *buffer, int nmemb )
+void sort_array( unsigned char *buffer, unsigned int nmemb )
 {
 	int sorted = 1;
 	
