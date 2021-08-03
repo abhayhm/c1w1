@@ -38,37 +38,45 @@ void main() {
                                 7,  87, 250, 230,  99,   3, 100,  90};
 	
 	//Printing analytics of array
-	printf("Analytics of an array of elements:\n");
+	PRINTF("Analytics of an array of elements:\n");
 	print_statistics( buffer, SIZE );
+
+#ifdef VERBOSE
 	
 	//Printing reorded array
-	printf("Reordered data set from large to small:\n");
+	PRINTF("Reordered data set from large to small:\n");
 	print_array( buffer, SIZE );
+
+#endif
 	
 }
 
 //Prints the statistics of an array
 void print_statistics( unsigned char *buffer, unsigned int nmemb )
 {
-	printf("Median : %d\n", (int)find_median( buffer, nmemb ));
-	printf("Mean   : %d\n", (int)find_mean( buffer, nmemb ));
-	printf("Maximum: %d\n", (int)find_maximum( buffer, nmemb ));
-	printf("Minimum: %d\n", (int)find_minimum( buffer, nmemb ));
+	PRINTF("Median : %d\n", (int)find_median( buffer, nmemb ));
+	PRINTF("Mean   : %d\n", (int)find_mean( buffer, nmemb ));
+	PRINTF("Maximum: %d\n", (int)find_maximum( buffer, nmemb ));
+	PRINTF("Minimum: %d\n", (int)find_minimum( buffer, nmemb ));
 }
+
+#ifdef VERBOSE
 
 //Prints all the elements of array
 void print_array( unsigned char *buffer, unsigned int nmemb )
 {
 	for( int element = 0; element < nmemb; ++element )
 	{
-		printf("%-3d ",(int)buffer[element]);
+		PRINTF("%-3d ",(int)buffer[element]);
 		
 		if( element % 10 == 9 )
 		{
-			printf("\n");
+			PRINTF("\n");
 		}
 	}
 }
+
+#endif
 
 //Finds the median of elements
 unsigned char find_median( unsigned char *buffer, unsigned int nmemb )

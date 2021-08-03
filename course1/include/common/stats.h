@@ -37,6 +37,8 @@
  */
 void print_statistics( unsigned char *buffer, unsigned int nmemb );
 
+#ifdef VERBOSE
+
 /**
  * @brief Prints all the elements of array
  *
@@ -49,6 +51,8 @@ void print_statistics( unsigned char *buffer, unsigned int nmemb );
  * @return void
  */
 void print_array( unsigned char *buffer, unsigned int nmemb );
+
+#endif
 
 /**
  * @brief Finds the median of elements

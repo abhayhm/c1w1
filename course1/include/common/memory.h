@@ -90,4 +90,100 @@ void set_all(char * ptr, char value, unsigned int size);
  */
 void clear_all(char * ptr, unsigned int size);
 
+/**
+ * @brief Moves data from source to destination
+ *
+ * Given source address of memory, destination address of memory and 
+ * length of the data, this function moves data from source to 
+ * destination and handles all the exceptions including memory overlap
+ *
+ * @param src Pointer to the starting address of memory
+ * @param dst Pointer to the starting address of destination memory frame
+ * @param length Size of the data to be moved from src to dst
+ *
+ * @return base address of dst.
+ */
+uint8_t* my_memmove(uint8_t* src, uint8_t* dst, size_t length);
+
+/**
+ * @brief Copies data from source to destination
+ *
+ * Given source address of memory, destination address of memory and 
+ * length of the data, this function copies data from source to 
+ * destination and handles no exceptions including memory overlap
+ *
+ * @param src Pointer to the starting address of memory
+ * @param dst Pointer to the starting address of destination memory frame
+ * @param length Size of the data to be copied from src to dst
+ *
+ * @return base address of dst.
+ */
+uint8_t* my_memcopy(uint8_t* src, uint8_t* dst, size_t length);
+
+/**
+ * @brief Sets given value to the given memory frame
+ *
+ * Given source address of memory, length of data and set value
+ * it sets all the memory bytes in given memory frame
+ * to the given set value
+ *
+ * @param src Pointer to the starting address of memory
+ * @param value Value to be set to whole memory frame
+ * @param length Size of the data
+ *
+ * @return base address of src.
+ */
+uint8_t* my_memset(uint8_t* src, size_t length, uint8_t value);
+
+/**
+ * @brief Sets zero to the given memory frame
+ *
+ * Given source address of memory and length of data
+ * it sets all the memory bytes in given memory frame
+ * to the given zero
+ *
+ * @param src Pointer to the starting address of memory
+ * @param length Size of the data
+ *
+ * @return base address of src.
+ */
+uint8_t* my_memzero(uint8_t* src, size_t length);
+
+/**
+ * @brief Reverses the byteorder of given memory frame
+ *
+ * Given source address of memory and length of data
+ * it reverses all the bytes in the given memory frame
+ *
+ * @param src Pointer to the starting address of memory
+ * @param length Size of the data
+ *
+ * @return base address of src.
+ */
+ uint8_t* my_reverse(uint8_t* src, size_t length);
+
+/**
+ * @brief Allocates memory for the given number of words
+ *
+ * Given length (number of words) it allocates 
+ * memory for given number of words.
+ *
+ * @param length Number of words
+ *
+ * @return base address of memory allocated.
+ */ 
+ int32_t * reserve_words(size_t length);
+ 
+ /**
+ * @brief Frees memory allocated for the words
+ *
+ * Given pointer (base address of allocated memory)
+ * this frees allocated memory
+ *
+ * @param src Source address
+ *
+ * @return void.
+ */ 
+ void free_words(int32_t * src);
+ 
 #endif /* __MEMORY_H__ */
