@@ -23,11 +23,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "platform.h"
 #include "stats.h"
 
 /* Size of the Data Set */
 #define SIZE (40)
 
+/*
 void main() {
 
 	//Array of elements
@@ -40,16 +42,12 @@ void main() {
 	//Printing analytics of array
 	PRINTF("Analytics of an array of elements:\n");
 	print_statistics( buffer, SIZE );
-
-#ifdef VERBOSE
 	
 	//Printing reorded array
 	PRINTF("Reordered data set from large to small:\n");
 	print_array( buffer, SIZE );
-
-#endif
-	
 }
+*/	
 
 //Prints the statistics of an array
 void print_statistics( unsigned char *buffer, unsigned int nmemb )
@@ -59,8 +57,6 @@ void print_statistics( unsigned char *buffer, unsigned int nmemb )
 	PRINTF("Maximum: %d\n", (int)find_maximum( buffer, nmemb ));
 	PRINTF("Minimum: %d\n", (int)find_minimum( buffer, nmemb ));
 }
-
-#ifdef VERBOSE
 
 //Prints all the elements of array
 void print_array( unsigned char *buffer, unsigned int nmemb )
@@ -74,9 +70,8 @@ void print_array( unsigned char *buffer, unsigned int nmemb )
 			PRINTF("\n");
 		}
 	}
+	PRINTF("\n");
 }
-
-#endif
 
 //Finds the median of elements
 unsigned char find_median( unsigned char *buffer, unsigned int nmemb )

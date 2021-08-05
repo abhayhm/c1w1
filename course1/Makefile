@@ -33,15 +33,19 @@ FLAGS = -Wall \
 	-g \
 	-std=c99
 
+#Macro flags for compile time switch
+DEBUG = -DNODEBUG
+COURSE1 = -DNOCOURSE1
+
 # Target	
-TARGET = c1m2
+TARGET = course1
 
 # Target HOST
 ifeq ($(PLATFORM),HOST)
 	# Compiler Flags and Defines
 	CC = gcc
 	LDFLAGS = -Wl,-Map=$(TARGET).map 
-	CFLAGS = $(FLAGS)
+	CFLAGS = $(FLAGS) $(DEBUG) $(COURSE1)
 	CPPFLAGS = -DHOST $(INCLUDES)
 endif
 
@@ -54,17 +58,20 @@ ifeq ($(PLATFORM),MSP432)
 	SPECS = -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16
 	
 	# Additional sources
-	SOURCES = main.c \
-		memory.c \
-		startup_msp432p401r_gcc.c \
-		system_msp432p402r.c \
-		interrupts_msp432p402r_gcc.c
+	SOURCES = src/main.c \
+		src/memory.c \
+		src/stats.c \
+		src/data.c \
+		src/course1.c \
+		src/startup_msp432p401r_gcc.c \
+		src/system_msp432p402r.c \
+		src/interrupts_msp432p402r_gcc.c
 	
 	# Compiler Flags and Defines
 	CC = arm-none-eabi-gcc
 	LD = -L ../
 	LDFLAGS = -Wl,_Map=$(TARGET).map, $(LD), $(LINKER_FILE)
-	CFLAGS = $(FLAGS), $(SPECS) -mcpu=$(CPU) -march=$(ARCH)
+	CFLAGS = $(FLAGS) $(DEBUG) $(COURSE1), $(SPECS) -mcpu=$(CPU) -march=$(ARCH)
 	CPPFLAGS = -DMSP432 $(INCLUDES)	
 endif
 

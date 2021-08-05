@@ -20,7 +20,9 @@
  * @date April 1 2017
  *
  */
+#include <stdlib.h>
 #include "memory.h"
+#include "platform.h"
 
 /***********************************************************
  Function Definitions
@@ -48,3 +50,66 @@ void clear_all(char * ptr, unsigned int size){
   set_all(ptr, 0, size);
 }
 
+uint8_t* my_memmove(uint8_t* src, uint8_t* dst, size_t length){
+	if((void *)dst > ((void *)(src + length))){
+		uint8_t* temp = (uint8_t *)reserve_words(length);
+		
+		if(NULL != temp){
+			for(int tlength = 0; tlength < length * sizeof(uint32_t); ++tlength){
+				*(temp + tlength) = *(src + tlength);
+			}
+			
+			for(int tlength = 0; tlength < length * sizeof(uint32_t); ++tlength){
+				*(dst + tlength) = *(temp + tlength);
+			}
+			
+			//free_words((uint32_t *)temp);
+			return dst;
+		}
+		return NULL;
+	}
+	else{
+		for(int tlength = 0; tlength < length * sizeof(uint32_t); ++tlength){
+			*(dst + tlength) = *(src + tlength);
+		}
+		return dst;
+		return dst;
+	}
+}
+
+uint8_t* my_memcopy(uint8_t* src, uint8_t* dst, size_t length){
+	for(int tlength = 0; tlength < length * sizeof(uint32_t); ++tlength){
+		*(dst + tlength) = *(src + tlength);
+	}
+	return dst;
+}
+
+uint8_t* my_memset(uint8_t* src, size_t length, uint8_t value){
+	for(int tlength = 0; tlength < length * sizeof(uint32_t); ++tlength){
+		*(src + tlength) = value;
+	}
+	return src;
+}
+
+uint8_t* my_memzero(uint8_t* src, size_t length){
+	for(int tlength = 0; tlength < length * sizeof(uint32_t); ++tlength){
+		*(src + tlength) = 0;
+	}
+	return src;
+}
+
+uint8_t* my_reverse(uint8_t* src, size_t length){
+	for(int tlength = 0; tlength < length * sizeof(uint32_t); ++tlength){
+		*(src + tlength) = ~(*(src + tlength));
+	}
+	return src;
+}
+
+uint32_t* reserve_words(size_t length){
+	uint32_t *address = (uint32_t *)calloc(length, sizeof(uint32_t));
+	return address;
+}
+
+void free_words(uint32_t* src){
+	free(src);
+}

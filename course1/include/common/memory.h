@@ -22,6 +22,7 @@
 #ifndef __MEMORY_H__
 #define __MEMORY_H__
 
+#include <stdint.h>
 /**
  * @brief Sets a value of a data array 
  *
@@ -172,7 +173,7 @@ uint8_t* my_memzero(uint8_t* src, size_t length);
  *
  * @return base address of memory allocated.
  */ 
- int32_t * reserve_words(size_t length);
+ uint32_t* reserve_words(size_t length);
  
  /**
  * @brief Frees memory allocated for the words
@@ -184,6 +185,6 @@ uint8_t* my_memzero(uint8_t* src, size_t length);
  *
  * @return void.
  */ 
- void free_words(int32_t * src);
+ void free_words(uint32_t* src);
  
 #endif /* __MEMORY_H__ */
