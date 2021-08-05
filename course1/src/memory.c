@@ -51,7 +51,7 @@ void clear_all(char * ptr, unsigned int size){
 }
 
 uint8_t* my_memmove(uint8_t* src, uint8_t* dst, size_t length){
-	if((void *)dst > ((void *)(src + length))){
+	if((uint32_t *)dst < ((uint32_t *)src + length)){
 		uint8_t* temp = (uint8_t *)reserve_words(length);
 		
 		if(NULL != temp){
@@ -63,7 +63,7 @@ uint8_t* my_memmove(uint8_t* src, uint8_t* dst, size_t length){
 				*(dst + tlength) = *(temp + tlength);
 			}
 			
-			//free_words((uint32_t *)temp);
+			free_words((uint32_t *)temp);
 			return dst;
 		}
 		return NULL;
@@ -72,7 +72,6 @@ uint8_t* my_memmove(uint8_t* src, uint8_t* dst, size_t length){
 		for(int tlength = 0; tlength < length * sizeof(uint32_t); ++tlength){
 			*(dst + tlength) = *(src + tlength);
 		}
-		return dst;
 		return dst;
 	}
 }
@@ -106,7 +105,7 @@ uint8_t* my_reverse(uint8_t* src, size_t length){
 }
 
 uint32_t* reserve_words(size_t length){
-	uint32_t *address = (uint32_t *)calloc(length, sizeof(uint32_t));
+	uint32_t *address = (uint32_t *)malloc(length * sizeof(uint32_t));
 	return address;
 }
 
