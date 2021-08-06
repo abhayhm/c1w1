@@ -43,7 +43,7 @@ TARGET = course1
 # Target HOST
 ifeq ($(PLATFORM),HOST)
 	# Compiler Flags and Defines
-	CC = gcc
+	CC = gcc -g
 	LDFLAGS = -Wl,-Map=$(TARGET).map 
 	CFLAGS = $(FLAGS) $(DEBUG) $(COURSE1)
 	CPPFLAGS = -DHOST $(INCLUDES)

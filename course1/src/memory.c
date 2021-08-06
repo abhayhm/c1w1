@@ -52,7 +52,7 @@ void clear_all(char * ptr, unsigned int size){
 
 uint8_t* my_memmove(uint8_t* src, uint8_t* dst, size_t length){
 	if((uint32_t *)dst < ((uint32_t *)src + length)){
-		uint8_t* temp = (uint8_t *)reserve_words(length);
+		uint8_t temp[length * sizeof(uint32_t)];
 		
 		if(NULL != temp){
 			for(int tlength = 0; tlength < length * sizeof(uint32_t); ++tlength){
@@ -63,7 +63,6 @@ uint8_t* my_memmove(uint8_t* src, uint8_t* dst, size_t length){
 				*(dst + tlength) = *(temp + tlength);
 			}
 			
-			free_words((uint32_t *)temp);
 			return dst;
 		}
 		return NULL;
@@ -110,5 +109,7 @@ uint32_t* reserve_words(size_t length){
 }
 
 void free_words(uint32_t* src){
-	free(src);
+	if(NULL != src){
+		free(src);
+	}
 }
