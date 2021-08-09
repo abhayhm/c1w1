@@ -22,13 +22,6 @@ uint8_t my_itoa(int32_t data, uint8_t* ptr, uint32_t base){
 		int32_t index = 0;
 		int32_t flag = 0;
 		
-		printf("Entering base2_string @:%d\n",data);
-
-		if(data < 0){
-			*(ptr + index) = '-';
-			++index;
-		}
-		
 		for(int32_t bit = 31; bit >= 0; --bit){
 			if(0 == flag && data & (1 << bit)){
 				flag = 1;
@@ -61,7 +54,6 @@ uint8_t my_itoa(int32_t data, uint8_t* ptr, uint32_t base){
 		int32_t temp = 0;
 		uint32_t mask = 0x07;
 		
-		printf("Entering base8_string @:%d\n",data);
 		if(data < 0){
 			*(ptr + index) = '-';
 			++index;
@@ -70,6 +62,7 @@ uint8_t my_itoa(int32_t data, uint8_t* ptr, uint32_t base){
 		
 		for(int32_t pos = (3 * 10); pos >= 0; pos = pos - 3){
 			temp = (mask << pos) & (uint32_t) data;
+			temp = temp >> pos;
 			
 			if(temp > 0 || 1 == flag){
 				flag = 1;
@@ -86,38 +79,20 @@ uint8_t my_itoa(int32_t data, uint8_t* ptr, uint32_t base){
 		*(ptr + (index)) = '\0';
 		++index;
 		
-		printf("Exiting base8_string @:%s\n",ptr);
 		return (uint8_t)index;
 	}
 	
 	uint8_t base10_string(int32_t data, uint8_t* ptr){
 		int32_t index = 0;
-		int32_t modby = 1;
-		printf("Entering base10_string @:%d\n",data);
-		if(data < 0){
-			*(ptr + index) = '-';
-			++index;
-		}
+		int32_t mod = 0;
+
+		data = (data < 0) ? (*(ptr + (index++)) = '-', data * -1 ) : data;
 		
-		while((data % modby) != 0 && (modby = (modby * 10)));
+		while((data != 0) && (mod =  (mod * 10) + (data % 10)) && (data = data / 10));
+		while((mod != 0) && (*(ptr + (index++)) = (mod % 10 ) + 48) && (mod = mod / 10));
 		
-		if(1 == modby){
-			*(ptr + index) = '0';
-			++index;
-		}
-		else{
-			while(modby > 0){
-				modby = modby / 10;
-				*(ptr + index) = (data % modby) + 48;
-				++index;
-			}
-		}
-		
-		*(ptr + index) = '\0';
-		++index;
-		
-		printf("Exiting base10_string @:%s %d\n",ptr,index);
-		return (uint8_t)index;
+		*(ptr + (index++)) = '\0';
+		return index;
 	}
 	
 	uint8_t base16_string(int32_t data, uint8_t* ptr){
@@ -125,14 +100,15 @@ uint8_t my_itoa(int32_t data, uint8_t* ptr, uint32_t base){
 		uint32_t temp = 0;
 		int32_t index = 0;
 		int32_t flag = 0;
-		printf("Entering base16_string @:%d\n",data);
+		
 		if(data < 0){
 			*(ptr + index) = '-';
 			++index;
 		}
 		
-		for(int32_t pos = ( 7 * 4 ) - 1; pos >= 0; pos = pos - 4){
+		for(int32_t pos = (7 * 4); pos >= 0; pos = pos - 4){
 			temp = data & (nibble << pos);
+			temp = temp >> pos;
 			
 			if((temp >= 0 && temp < 10) && (0 != temp || 0 != flag)){
 				*(ptr + index) = temp + 48;
@@ -149,7 +125,6 @@ uint8_t my_itoa(int32_t data, uint8_t* ptr, uint32_t base){
 		*(ptr + index) = '\0';
 		++index;
 		
-		printf("Exiting base16_string @:%s %d\n",ptr,index);
 		return (uint8_t)index;
 	}
 	
@@ -177,7 +152,7 @@ int32_t my_atoi(uint8_t* ptr, uint8_t digits, uint32_t base){
 		int32_t number = 0;
 		int32_t index = 0;
 		
-		for(int32_t pos = digits; pos >= 0; --pos){
+		for(int32_t pos = 31; pos >= 0; --pos){
 			
 			if(*(ptr + index) == '1'){
 				number = number | (1 << pos);
@@ -210,6 +185,10 @@ int32_t my_atoi(uint8_t* ptr, uint8_t digits, uint32_t base){
 	int32_t string_base10(uint8_t digits, uint8_t* ptr){
 		int32_t number = 0;
 		int32_t index =0;
+		
+		if('-' == *(ptr + 0)){
+			++index;
+		}
 		
 		while('\0' != *(ptr + index)){
 			number = (number * 10) + (*(ptr + index) - 48);
