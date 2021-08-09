@@ -55,11 +55,11 @@ uint8_t* my_memmove(uint8_t* src, uint8_t* dst, size_t length){
 		uint8_t temp[length];
 		
 		if(NULL != temp){
-			for(int tlength = 0; tlength < length; ++tlength){
+			for(int32_t tlength = 0; tlength < length; ++tlength){
 				*(temp + tlength) = *(src + tlength);
 			}
 			
-			for(int tlength = 0; tlength < length; ++tlength){
+			for(int32_t tlength = 0; tlength < length; ++tlength){
 				*(dst + tlength) = *(temp + tlength);
 			}
 			
@@ -68,7 +68,7 @@ uint8_t* my_memmove(uint8_t* src, uint8_t* dst, size_t length){
 		return NULL;
 	}
 	else{
-		for(int tlength = 0; tlength < length; ++tlength){
+		for(int32_t tlength = 0; tlength < length; ++tlength){
 			*(dst + tlength) = *(src + tlength);
 		}
 		return dst;
@@ -76,21 +76,21 @@ uint8_t* my_memmove(uint8_t* src, uint8_t* dst, size_t length){
 }
 
 uint8_t* my_memcopy(uint8_t* src, uint8_t* dst, size_t length){
-	for(int tlength = 0; tlength < length; ++tlength){
+	for(int32_t tlength = 0; tlength < length; ++tlength){
 		*(dst + tlength) = *(src + tlength);
 	}
 	return dst;
 }
 
 uint8_t* my_memset(uint8_t* src, size_t length, uint8_t value){
-	for(int tlength = 0; tlength < length; ++tlength){
+	for(int32_t tlength = 0; tlength < length; ++tlength){
 		*(src + tlength) = value;
 	}
 	return src;
 }
 
 uint8_t* my_memzero(uint8_t* src, size_t length){
-	for(int tlength = 0; tlength < length; ++tlength){
+	for(int32_t tlength = 0; tlength < length; ++tlength){
 		*(src + tlength) = 0;
 	}
 	return src;
@@ -98,7 +98,7 @@ uint8_t* my_memzero(uint8_t* src, size_t length){
 
 uint8_t* my_reverse(uint8_t* src, size_t length){
 	uint8_t temp_mem = 0;
-	for(int first = 0, last = length -1; first < last; ++first, --last){
+	for(int32_t first = 0, last = length -1; first < last; ++first, --last){
 		temp_mem = *(src + first);
 		*(src + first) = *(src + last);
 		*(src + last) = temp_mem;

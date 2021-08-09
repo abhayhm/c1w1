@@ -34,8 +34,8 @@ FLAGS = -Wall \
 	-std=c99
 
 #Macro flags for compile time switch
-DEBUG = -DNODEBUG
-COURSE1 = -DNOCOURSE1
+DEBUGFLAG = -DNODEBUG
+COURSE1FLAG = -DNOCOURSE1
 
 # Target	
 TARGET = course1
@@ -45,7 +45,7 @@ ifeq ($(PLATFORM),HOST)
 	# Compiler Flags and Defines
 	CC = gcc -g
 	LDFLAGS = -Wl,-Map=$(TARGET).map 
-	CFLAGS = $(FLAGS) $(DEBUG) $(COURSE1)
+	CFLAGS = $(FLAGS) $(DEBUGFLAG) $(COURSE1FLAG)
 	CPPFLAGS = -DHOST $(INCLUDES)
 endif
 
