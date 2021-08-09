@@ -18,11 +18,11 @@ to Embedded Software and Development Environments.
 - include/ -> (Directory) Contains header files required for the project
 
 #### Usage:
-For verbose output and course1() enabled
+For verbose output and course1() enabled </br>
 ```make build DEBUGFLAG=-DVERBOSE COURSE1FLAG=-DCOURSE1```
 
-For verbose output
+For verbose output </br>
 ```make build DEBUGFLAG=-DVERBOSE```
 
-For course1() enabled
+For course1() enabled </br>
 ```make build COURSE1FLAG=-DCOURSE1```
