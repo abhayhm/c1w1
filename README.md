@@ -25,4 +25,4 @@ to Embedded Software and Development Environments.
 ```make build DEBUGFLAG=-DVERBOSE```
 
 - For course1() enabled </br>
-```make build COURSE1FLAG=-DCOURSE1```
+```make build COURSE1FLAG=-DCOURSE1``` 
