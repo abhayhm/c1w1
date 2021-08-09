@@ -22,9 +22,12 @@
 ####      include/ -> (Directory) Contains header files required for the project
 
 ###  USAGE
+
 #### For verbose output and course1() enabled
-##### <code>make build DEBUGFLAG=-DVERBOSE COURSE1FLAG=-DCOURSE1<code>
+##### '''make build DEBUGFLAG=-DVERBOSE COURSE1FLAG=-DCOURSE1'''
+
 #### For verbose output
-##### <code>make build DEBUGFLAG=-DVERBOSE<code>
+##### '''make build DEBUGFLAG=-DVERBOSE'''
+
 #### For course1() enabled
-##### <code>make build COURSE1FLAG=-DCOURSE1<code>
+##### '''make build COURSE1FLAG=-DCOURSE1'''
